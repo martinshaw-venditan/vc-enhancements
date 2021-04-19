@@ -3,7 +3,7 @@ import "./Popup.scss";
 
 export default function Popup() {
   useEffect(() => {
-    // Example of how to send a message to eventPage.ts.
+    // Example of how to send a message to background.ts.
     chrome.runtime.sendMessage({ popupMounted: true });
   }, []);
 

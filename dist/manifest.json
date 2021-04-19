@@ -1,9 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "Chrome Extension (built with TypeScript + React)",
-    "description":
-        "A boilerplate project to quickly build a Chrome extension using TypeScript and React (built using webpack).",
+    "name": "VC Enhancements",
+    "description": "",
     "version": "1.0.0",
 
     "browser_action": {
@@ -12,8 +11,8 @@
     },
 
     "background": {
-        "scripts": ["js/eventPage.js"],
-        "persistent": false
+        "scripts": ["js/background.js"],
+        "persistent": true
     },
 
     "icons": {
@@ -22,5 +21,8 @@
         "128": "icon128.png"
     },
 
-    "permissions": []
+    "permissions": [
+        "tabs",
+        "scripting"
+    ]
 }
