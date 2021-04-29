@@ -7,7 +7,7 @@
     "lib": ["es2015", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "dist/js",
+    "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,
     "target": "es5"

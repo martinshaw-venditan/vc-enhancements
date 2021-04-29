@@ -36,7 +36,7 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, currentTab) {
             chrome.tabs.executeScript(
                 currentTab.id,
                 {
-                    file: 'js/app.js'
+                    file: 'app.js'
                 },
                 prepareTab
             );
