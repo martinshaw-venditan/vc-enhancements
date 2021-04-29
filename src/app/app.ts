@@ -248,6 +248,9 @@ class VCEnhancementsApp {
             .querySelectorAll('*[name]')
         ]
             .map(function (element) {
+                if (element.disabled || element.readOnly) {
+                    return false;
+                }
                 return element.tagName === 'TEXTAREA' ? {
                         'name': element.name,
                         'value': self.editors[element.id].getValue()
@@ -255,7 +258,8 @@ class VCEnhancementsApp {
                         'name': element.name,
                         'value': element.value
                     };
-            });
+            })
+            .filter(item => item !== false);
     };
 
     private getDataHistoryByUuid = (uuid: string): DataHistory => (this.getCurrentHistory() as Array<DataHistory>).filter(item => item.uuid === uuid)[0];
@@ -265,12 +269,15 @@ class VCEnhancementsApp {
 
         const form = document.querySelector('form#edit_template_form');
         data.formData.forEach(function (item) {
-            if (form.querySelector('*[name="'+item.name+'"]').tagName === 'TEXTAREA') {
-                (form.querySelector('*[name="'+item.name+'"]') as HTMLTextAreaElement).innerHTML = item.value;
-                // @ts-ignore
-                console.log(self.editors[(form.querySelector('*[name="'+item.name+'"]') as HTMLTextAreaElement).id].setValue(item.value));
+            let element = form.querySelector('*[name="'+item.name+'"]');
+            if ((element as HTMLInputElement|HTMLTextAreaElement).disabled || (element as HTMLInputElement|HTMLTextAreaElement).readOnly) {
+                return;
+            }
+            if (element.tagName === 'TEXTAREA') {
+                (element as HTMLTextAreaElement).innerHTML = item.value;
+                self.editors[(element as HTMLTextAreaElement).id].setValue(item.value);
             } else {
-                (form.querySelector('*[name="'+item.name+'"]') as HTMLInputElement|HTMLSelectElement).value = item.value;
+                (element as HTMLInputElement|HTMLSelectElement).value = item.value;
             }
         });
     };
