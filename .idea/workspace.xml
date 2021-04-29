@@ -21,8 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="76fcaf5c-20da-45c0-bbfa-049aaffea8a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619666278426</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add additional styling">
+      <created>1619668619238</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1619668619238</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,33 +157,34 @@
     <MESSAGE value="Fresh attempt" />
     <MESSAGE value="Working implementation with CodeMirror" />
     <MESSAGE value="Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
+    <MESSAGE value="Add additional styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add additional styling" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="305" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619666308658">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
     <state x="360" y="305" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1792.1058@0.25.1792.1058" timestamp="1619666308658" />
-    <state width="1750" height="258" key="GridCell.Tab.0.bottom" timestamp="1619668518880">
+    <state width="1750" height="258" key="GridCell.Tab.0.bottom" timestamp="1619668638419">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.bottom/0.25.1792.1058@0.25.1792.1058" timestamp="1619668518880" />
-    <state width="1750" height="258" key="GridCell.Tab.0.center" timestamp="1619668518880">
+    <state width="1750" height="258" key="GridCell.Tab.0.bottom/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638419" />
+    <state width="1750" height="258" key="GridCell.Tab.0.center" timestamp="1619668638418">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.center/0.25.1792.1058@0.25.1792.1058" timestamp="1619668518880" />
-    <state width="1750" height="258" key="GridCell.Tab.0.left" timestamp="1619668518879">
+    <state width="1750" height="258" key="GridCell.Tab.0.center/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638418" />
+    <state width="1750" height="258" key="GridCell.Tab.0.left" timestamp="1619668638415">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.left/0.25.1792.1058@0.25.1792.1058" timestamp="1619668518879" />
-    <state width="1750" height="258" key="GridCell.Tab.0.right" timestamp="1619668518880">
+    <state width="1750" height="258" key="GridCell.Tab.0.left/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638415" />
+    <state width="1750" height="258" key="GridCell.Tab.0.right" timestamp="1619668638419">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619668518880" />
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619666279759">
+    <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638419" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619668620427">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619666279759" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619668620427" />
     <state x="661" y="292" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1618822889996">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
