@@ -293,5 +293,9 @@ class VCEnhancementsApp {
     };
 }
 
-let app = new VCEnhancementsApp();
+let app: VCEnhancementsApp;
+if (typeof (window as any).vce_instantiated === typeof undefined) {
+    app = new VCEnhancementsApp();
+    (window as any).vce_instantiated = true;
+}
 export default app;
