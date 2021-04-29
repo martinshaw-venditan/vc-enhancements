@@ -10,6 +10,8 @@
 //     return isResponseAsync;
 // });
 
+const insightUrl = /^.*insight\.venditan\.com.*$/;
+
 const urlRegexes = [
     /^.*\.venditan\.com\/LayoutBlockInstance.*$/,
     /^.*\.venditan\.com\/LayoutTemplate.*$/,
@@ -19,9 +21,14 @@ const urlRegexes = [
 
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, currentTab) {
     if (changeInfo.status == 'complete' && currentTab.active) {
-        const isCMSTabUrl = urlRegexes.map(regex => regex.test(currentTab.url)).filter(v => v).length > 0;
+        const isInsightUrl = insightUrl.test(currentTab.url);
+        const isVcCmsUrl = urlRegexes.map(regex => regex.test(currentTab.url)).filter(v => v).length > 0;
 
-        if (isCMSTabUrl) {
+        if (isInsightUrl) {
+            chrome.tabs.executeScript(currentTab.id, {file: 'js/insight.js'}, function (result: any) {
+                return result;
+            });
+        } else if (isVcCmsUrl) {
             chrome.tabs.executeScript(currentTab.id, {file: 'js/app.js'}, function (result: any) {
                 return result;
             });
