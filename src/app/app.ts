@@ -51,7 +51,7 @@ class VCEnhancementsApp {
     private setupEditors () {
         const self = this;
 
-        let editors: NodeListOf<any>;
+        let editors: NodeListOf<HTMLTextAreaElement>;
         if (self.pageType == 'LayoutBlockInstance' || self.pageType == 'LayoutTemplate' ||  self.pageType == 'LayoutBlockTemplate') {
             editors = document.getElementById('content_wrap')
                 .getElementsByClassName('span8')[0]
