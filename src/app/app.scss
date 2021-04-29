@@ -42,4 +42,14 @@
   min-width: 100%;
   min-height: 350px;
   border: 1px solid #ccc;
+
+  &.CodeMirror--fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    min-width: calc(99vw + 1px);
+    height: calc(99vh + 1px);
+    resize: none;
+  }
 }

@@ -90,25 +90,27 @@ class VCEnhancementsApp {
         const self = this;
         if (self.pageType == 'LayoutBlockTemplate') {
             let list = document.querySelectorAll('form#linked_template_form label');
-            list.forEach(function (element) {
+            list.forEach(function (element: HTMLDivElement) {
                 let link = document.createElement(    'a');
                 let id = element.querySelector('input').value;
                 link.href = '/LayoutTemplate/view/id/' + id;
                 link.innerHTML = '#'+id+' &rarr;';
                 link.target = "_blank";
                 link.className = 'jumplink';
+                link.title = "Open \""+element.innerText.slice(1,40)+"\" in a new tab...";
                 element.appendChild(link);
             });
         }
         if (self.pageType == 'LayoutTemplate') {
             let list = document.querySelectorAll('form#linked_template_form label');
-            list.forEach(function (element) {
+            list.forEach(function (element: HTMLDivElement) {
                 let link = document.createElement(    'a');
                 let id = element.querySelector('input').value;
                 link.href = '/LayoutBlockTemplate/view/id/' + id;
                 link.innerHTML = '#'+id+' &rarr;';
                 link.target = "_blank";
                 link.className = 'jumplink';
+                link.title = "Open \""+element.innerText.slice(1,40)+"\" in a new tab...";
                 element.appendChild(link);
             });
         }

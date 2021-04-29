@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="76fcaf5c-20da-45c0-bbfa-049aaffea8a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619668989060</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Update README.md">
+      <created>1619669427201</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1619669427201</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,26 +181,26 @@
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
     <state x="360" y="305" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1792.1058@0.25.1792.1058" timestamp="1619666308658" />
-    <state width="1750" height="258" key="GridCell.Tab.0.bottom" timestamp="1619668638419">
+    <state width="1750" height="258" key="GridCell.Tab.0.bottom" timestamp="1619685557435">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.bottom/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638419" />
-    <state width="1750" height="258" key="GridCell.Tab.0.center" timestamp="1619668638418">
+    <state width="1750" height="258" key="GridCell.Tab.0.bottom/0.25.1792.1058@0.25.1792.1058" timestamp="1619685557435" />
+    <state width="1750" height="258" key="GridCell.Tab.0.center" timestamp="1619685557434">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.center/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638418" />
-    <state width="1750" height="258" key="GridCell.Tab.0.left" timestamp="1619668638415">
+    <state width="1750" height="258" key="GridCell.Tab.0.center/0.25.1792.1058@0.25.1792.1058" timestamp="1619685557434" />
+    <state width="1750" height="258" key="GridCell.Tab.0.left" timestamp="1619685557433">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.left/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638415" />
-    <state width="1750" height="258" key="GridCell.Tab.0.right" timestamp="1619668638419">
+    <state width="1750" height="258" key="GridCell.Tab.0.left/0.25.1792.1058@0.25.1792.1058" timestamp="1619685557433" />
+    <state width="1750" height="258" key="GridCell.Tab.0.right" timestamp="1619685557434">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638419" />
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619668991166">
+    <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619685557434" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619669428973">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619668991166" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619669428973" />
     <state x="661" y="292" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1618822889996">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
