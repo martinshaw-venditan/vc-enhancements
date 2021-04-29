@@ -15,14 +15,6 @@
       input, textarea {
         width: calc(100% - 15px);
       }
-
-      .CodeMirror {
-        font-size: 13px;
-      }
-
-      .code_textarea {
-        //display: none;
-      }
     }
 
     &:nth-child(2) {
@@ -42,4 +34,8 @@
       }
     }
   }
+}
+
+.CodeMirror {
+  font-size: 13px;
 }
