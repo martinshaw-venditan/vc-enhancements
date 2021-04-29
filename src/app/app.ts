@@ -62,7 +62,7 @@ class VCEnhancementsApp {
                 .querySelectorAll('textarea.code_textarea');
         }
 
-        editors.forEach(function(element: HTMLElement) {
+        editors.forEach(function(element: HTMLTextAreaElement) {
             const id = uuidv4();
             element.id = id;
 
