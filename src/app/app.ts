@@ -63,7 +63,7 @@ class VCEnhancementsApp {
                 self.pageType = path.type;
             }
         });
-        const pageIdFind = location.href.match(/^.*\/id\/([0-9]*)$/);
+        const pageIdFind = location.href.match(/^.*\/id\/([0-9]*).*$/);
         if (pageIdFind !== null) {
             this.pageId = parseInt(pageIdFind[1]);
         }
@@ -153,6 +153,7 @@ class VCEnhancementsApp {
     };
 
     private getCurrentHistory = (): Array<DataHistory> => {
+        console.log(this.historyStore, this.pageType + '_' + this.pageId, this.historyStore[this.pageType + '_' + this.pageId]);
         const current = this.historyStore[this.pageType + '_' + this.pageId]
         return typeof current === 'undefined' ? [] : current;
     };
@@ -200,6 +201,7 @@ class VCEnhancementsApp {
     private historyRestoreButtonClickEvent = (context: VCEnhancementsApp): void => {
         const self = this;
 
+        console.log(context.getCurrentHistory());
         if (context.getCurrentHistory().length <= 0) {
             alert('You have not stored any previous configurations for this block!');
             return;
