@@ -1,21 +1,104 @@
 import './app.scss';
+import {v4 as uuidv4} from 'uuid';
+import CodeMirror from "codemirror";
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/idea.css';
+
+interface EditorAddon extends CodeMirror.EditorConfiguration {
+    height?: string;
+    lineNumbers?: boolean;
+    autoRefresh?: boolean;
+    showTrailingSpace?: boolean;
+}
 
 class VCEnhancementsApp {
+    private editors: Array<String> = [];
+
+    private paths = [
+        { test: /^.*\.venditan\.com\/LayoutBlockInstance.*$/, type: 'LayoutBlockInstance' },
+        { test: /^.*\.venditan\.com\/LayoutTemplate.*$/, type: 'LayoutTemplate' },
+        { test: /^.*\.venditan\.com\/CMSContentTemplate.*$/, type: 'CMSContentTemplate' },
+        { test: /^.*\.venditan\.com\/LayoutBlockTemplate.*$/, type: 'LayoutBlockTemplate' },
+    ];
+
+    private pageType = '';
+
     constructor() {
-        (function() {
+        const self = this;
+        VCEnhancementsApp.ready(function () {
+            self.determinePageType();
+            self.setupEditors();
+            self.setupJumpLinks();
+        });
+    }
 
-            // just place a div at top right
-            var div = document.createElement('div');
-            div.style.position = 'fixed';
-            div.style.top = '0';
-            div.style.right = '0';
-            div.textContent = 'Injected!';
-            document.body.appendChild(div);
+    private determinePageType () {
+        const self = this;
+        self.paths.forEach(function (path) {
+            if (path.test.test(window.location.href)) {
+                self.pageType = path.type;
+            }
+        });
+    }
 
-            alert(1);
+    private setupEditors () {
+        const self = this;
+        document.getElementById('content_wrap')
+            .getElementsByClassName('span8')[0]
+            .querySelectorAll('textarea.code_textarea')
+            .forEach(function(element) {
+                const id = uuidv4();
+                element.id = id;
 
-        })();
+                const editorConfig: CodeMirror.EditorConfiguration & EditorAddon = {
+                    height: '350px',
+                    lineNumbers: true
+                };
+                let editor = CodeMirror.fromTextArea(
+                    document.getElementById(id) as HTMLTextAreaElement,
+                    editorConfig
+                );
+            });
+    }
+
+    private setupJumpLinks () {
+        const self = this;
+        if (self.pageType == 'LayoutBlockTemplate') {
+            let list = document.querySelectorAll('form#linked_template_form label');
+            list.forEach(function (element) {
+                let link = document.createElement(    'a');
+                let id = element.querySelector('input').value;
+                link.href = '/LayoutTemplate/view/id/' + id;
+                link.innerHTML = '#'+id+' &rarr;';
+                link.target = "_blank";
+                link.className = 'jumplink';
+                element.appendChild(link);
+            });
+        }
+        if (self.pageType == 'LayoutTemplate') {
+            let list = document.querySelectorAll('form#linked_template_form label');
+            list.forEach(function (element) {
+                let link = document.createElement(    'a');
+                let id = element.querySelector('input').value;
+                link.href = '/LayoutBlockTemplate/view/id/' + id;
+                link.innerHTML = '#'+id+' &rarr;';
+                link.target = "_blank";
+                link.className = 'jumplink';
+                element.appendChild(link);
+            });
+        }
+    }
+
+    private static ready (callback) {
+        // see if DOM is already available
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            // call on next available tick
+            setTimeout(callback, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", callback);
+        }
     }
 }
 
-export default VCEnhancementsApp;
+let app = new VCEnhancementsApp();
+export default app;

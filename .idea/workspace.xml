@@ -21,11 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="76fcaf5c-20da-45c0-bbfa-049aaffea8a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/dist/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/popup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.common.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -79,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1618821927097</updated>
       <workItem from="1618821928794" duration="8605000" />
-      <workItem from="1619658108230" duration="3662000" />
+      <workItem from="1619658108230" duration="8036000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1618822908939</created>
@@ -109,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619661568302</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fresh attempt">
+      <created>1619661797116</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619661797116</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,40 +141,45 @@
     <MESSAGE value="Implement app script injection" />
     <MESSAGE value="Broken with monaco" />
     <MESSAGE value="Attempt to fix monaco" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attempt to fix monaco" />
+    <MESSAGE value="Fresh attempt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fresh attempt" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="305" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618822764855">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
     <state x="360" y="305" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1792.1058@0.25.1792.1058" timestamp="1618822764855" />
-    <state width="1750" height="258" key="GridCell.Tab.0.bottom" timestamp="1619661759868">
+    <state width="1750" height="258" key="GridCell.Tab.0.bottom" timestamp="1619666037539">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.bottom/0.25.1792.1058@0.25.1792.1058" timestamp="1619661759868" />
-    <state width="1750" height="258" key="GridCell.Tab.0.center" timestamp="1619661759867">
+    <state width="1750" height="258" key="GridCell.Tab.0.bottom/0.25.1792.1058@0.25.1792.1058" timestamp="1619666037539" />
+    <state width="1750" height="258" key="GridCell.Tab.0.center" timestamp="1619666037538">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.center/0.25.1792.1058@0.25.1792.1058" timestamp="1619661759867" />
-    <state width="1750" height="258" key="GridCell.Tab.0.left" timestamp="1619661759866">
+    <state width="1750" height="258" key="GridCell.Tab.0.center/0.25.1792.1058@0.25.1792.1058" timestamp="1619666037538" />
+    <state width="1750" height="258" key="GridCell.Tab.0.left" timestamp="1619666037531">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.left/0.25.1792.1058@0.25.1792.1058" timestamp="1619661759866" />
-    <state width="1750" height="258" key="GridCell.Tab.0.right" timestamp="1619661759868">
+    <state width="1750" height="258" key="GridCell.Tab.0.left/0.25.1792.1058@0.25.1792.1058" timestamp="1619666037531" />
+    <state width="1750" height="258" key="GridCell.Tab.0.right" timestamp="1619666037538">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619661759868" />
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619661570122">
+    <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619666037538" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619661873817">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619661570122" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619661873817" />
     <state x="661" y="292" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1618822889996">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
     <state x="661" y="292" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.25.1792.1058@0.25.1792.1058" timestamp="1618822889996" />
-    <state x="597" y="309" width="597" height="490" key="find.popup" timestamp="1619661295873">
+    <state x="597" y="309" width="597" height="490" key="find.popup" timestamp="1619665195503">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state x="597" y="309" width="597" height="490" key="find.popup/0.25.1792.1058@0.25.1792.1058" timestamp="1619661295873" />
+    <state x="597" y="309" width="597" height="490" key="find.popup/0.25.1792.1058@0.25.1792.1058" timestamp="1619665195503" />
+    <state x="561" y="260" width="670" height="676" key="search.everywhere.popup" timestamp="1619663703420">
+      <screen x="0" y="25" width="1792" height="1058" />
+    </state>
+    <state x="561" y="260" width="670" height="676" key="search.everywhere.popup/0.25.1792.1058@0.25.1792.1058" timestamp="1619663703420" />
   </component>
 </project>

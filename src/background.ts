@@ -1,19 +1,14 @@
-import TabChangeInfo = chrome.tabs.TabChangeInfo;
-import Tab = chrome.tabs.Tab;
-import InjectDetails = chrome.tabs.InjectDetails;
-import VCEnhancementsApp from "./app/app";
-
-// Listen to messages sent from other parts of the extension.
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    // onMessage must return "true" if response is async.
-    let isResponseAsync = false;
-
-    if (request.popupMounted) {
-        console.log('background notified that Popup.tsx has mounted.');
-    }
-
-    return isResponseAsync;
-});
+// Listen to messages sent from other parts of the extension. (commented out for future use with IPC)
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//     // onMessage must return "true" if response is async.
+//     let isResponseAsync = false;
+//
+//     if (request.popupMounted) {
+//         console.log('background notified that Popup.tsx has mounted.');
+//     }
+//
+//     return isResponseAsync;
+// });
 
 const urlRegexes = [
     /^.*\.venditan\.com\/LayoutBlockInstance.*$/,
@@ -23,14 +18,12 @@ const urlRegexes = [
 ];
 
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, currentTab) {
-    // alert([tabId,changeInfo.status, currentTab.active]);
     if (changeInfo.status == 'complete' && currentTab.active) {
         const isCMSTabUrl = urlRegexes.map(regex => regex.test(currentTab.url)).filter(v => v).length > 0;
-        // alert([isCMSTabUrl, currentTab.url, urlRegexes.map(regex => regex.test(currentTab.url))]);
 
         if (isCMSTabUrl) {
-            chrome.tabs.executeScript(currentTab.id, {file: 'app.js'}, function (result: any) {
-                let app = new VCEnhancementsApp();
+            chrome.tabs.executeScript(currentTab.id, {file: 'js/app.js'}, function (result: any) {
+                return result;
             });
         }
     }

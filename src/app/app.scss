@@ -16,8 +16,29 @@
         width: calc(100% - 15px);
       }
 
+      .CodeMirror {
+        font-size: 13px;
+      }
+
       .code_textarea {
-        display: none;
+        //display: none;
+      }
+    }
+
+    &:nth-child(2) {
+      a.jumplink {
+        float: right;
+      }
+
+      label {
+        display: block;
+        width: 100%;
+        clear: both;
+
+        strong {
+          font-size: 10pt;
+          vertical-align: top;
+        }
       }
     }
   }
