@@ -2,9 +2,9 @@
 
 >Some little additions to VC's functionality for developer convenience
  
-![Screenshot 1](Screenshot 2.png)
+<img width="1792" alt="Screenshot 2" src="https://user-images.githubusercontent.com/69458995/116501326-68229100-a8a8-11eb-9663-700160340f29.png">
 
-![Screenshot 2](Screenshot 1.png)
+<img width="1792" alt="Screenshot 1" src="https://user-images.githubusercontent.com/69458995/116501328-6953be00-a8a8-11eb-982e-2397f36362c3.png">
  
 ### How to install.
 
