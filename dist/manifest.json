@@ -6,6 +6,7 @@
     "version": "1.0.0",
 
     "browser_action": {
+        "default_title": "VC Enhancements",
         "default_icon": "icon16.png",
         "default_popup": "popup.html"
     },
@@ -22,7 +23,8 @@
     },
 
     "permissions": [
-        "tabs",
-        "scripting"
+        "https://*/*",
+        "http://*/*",
+        "activeTab"
     ]
 }

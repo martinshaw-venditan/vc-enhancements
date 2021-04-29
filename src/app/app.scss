@@ -1,0 +1,24 @@
+#content_wrap {
+  & > .row > .span8 {
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+
+    & > form {
+      width: 100%;
+    }
+
+    &:nth-child(1) > form {
+      .label {
+        padding-bottom: 5px;
+      }
+
+      input, textarea {
+        width: calc(100% - 15px);
+      }
+
+      .code_textarea {
+        display: none;
+      }
+    }
+  }
+}
