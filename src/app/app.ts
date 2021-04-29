@@ -186,6 +186,7 @@ class VCEnhancementsApp {
 
     private historyStoreButtonClickEvent = (context: VCEnhancementsApp): void => {
         let descriptor = prompt('Please enter a caption to describe the current configuration:');
+        descriptor = descriptor === null ? '' : descriptor;
         let config : DataHistory = {
             uuid: uuidv4(),
             descriptor,
