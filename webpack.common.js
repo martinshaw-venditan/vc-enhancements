@@ -5,15 +5,9 @@ module.exports = {
     popup: path.join(__dirname, "src/popup/index.tsx"),
     background: path.join(__dirname, "src/background.ts"),
     app: path.join(__dirname, "src/app/app.ts"),
-    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
-    'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
-    'css.worker': 'monaco-editor/esm/vs/language/css/css.worker',
-    'html.worker': 'monaco-editor/esm/vs/language/html/html.worker',
-    'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker',
   },
   output: {
-    globalObject: 'self',
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "dist/js"),
     filename: "[name].js"
   },
   module: {
@@ -24,6 +18,7 @@ module.exports = {
         use: "ts-loader"
       },
       {
+        exclude: /node_modules/,
         test: /\.css$/,
         use: [
           {
@@ -35,6 +30,7 @@ module.exports = {
         ]
       },
       {
+        exclude: /node_modules/,
         test: /\.ttf$/,
         use: ['file-loader']
       },

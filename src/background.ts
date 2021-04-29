@@ -22,10 +22,6 @@ const urlRegexes = [
     /^.*\.venditan\.com\/LayoutBlockTemplate.*$/,
 ];
 
-let prepareTab = function (result: any) {
-    let app = new VCEnhancementsApp();
-}
-
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, currentTab) {
     // alert([tabId,changeInfo.status, currentTab.active]);
     if (changeInfo.status == 'complete' && currentTab.active) {
@@ -33,20 +29,9 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, currentTab) {
         // alert([isCMSTabUrl, currentTab.url, urlRegexes.map(regex => regex.test(currentTab.url))]);
 
         if (isCMSTabUrl) {
-            chrome.tabs.executeScript(
-                currentTab.id,
-                {
-                    file: 'app.js'
-                },
-                prepareTab
-            );
-            // chrome.tabs.executeScript(
-            //     currentTab.id,
-            //     {
-            //         file: 'app.css'
-            //     },
-            //     prepareTab
-            // );
+            chrome.tabs.executeScript(currentTab.id, {file: 'app.js'}, function (result: any) {
+                let app = new VCEnhancementsApp();
+            });
         }
     }
 });
