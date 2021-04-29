@@ -18,8 +18,21 @@ interface CodeMirrorLanguageMode {
     json?: boolean,
 }
 
+interface DataEntry {
+    name: string,
+    value: string,
+}
+
+interface DataHistory {
+    uuid: string,
+    datetime: string,
+    formData: Array<DataEntry>,
+    descriptor: string
+}
+
 class VCEnhancementsApp {
-    private editors: Array<CodeMirror.EditorFromTextArea> = [];
+    //CodeMirror.EditorFromTextArea
+    private editors: object = {};
 
     private paths = [
         { test: /^.*\.venditan\.com\/LayoutBlockInstance.*$/, type: 'LayoutBlockInstance' },
@@ -29,26 +42,34 @@ class VCEnhancementsApp {
     ];
 
     private pageType = '';
+    private pageId = -1;
 
-    constructor() {
+    private historyStore = {};
+
+    constructor () {
         const self = this;
         VCEnhancementsApp.ready(function () {
             self.determinePageType();
             self.setupEditors();
             self.setupJumpLinks();
+            self.setupHistory();
         });
     }
 
-    private determinePageType () {
+    private determinePageType = (): void => {
         const self = this;
         self.paths.forEach(function (path) {
             if (path.test.test(window.location.href)) {
                 self.pageType = path.type;
             }
         });
-    }
+        const pageIdFind = location.href.match(/^.*\/id\/([0-9]*)$/);
+        if (pageIdFind !== null) {
+            this.pageId = parseInt(pageIdFind[1]);
+        }
+    };
 
-    private setupEditors () {
+    private setupEditors = (): void => {
         const self = this;
 
         let editors: NodeListOf<HTMLTextAreaElement>;
@@ -78,19 +99,19 @@ class VCEnhancementsApp {
                 lineNumbers: true,
                 mode: lang,
             };
-            self.editors.push(CodeMirror.fromTextArea(
+            self.editors[id] = CodeMirror.fromTextArea(
                 document.getElementById(id) as HTMLTextAreaElement,
                 editorConfig
-            ));
+            );
         });
-    }
+    };
 
-    private setupJumpLinks () {
+    private setupJumpLinks = (): void => {
         const self = this;
         if (self.pageType == 'LayoutBlockTemplate') {
             let list = document.querySelectorAll('form#linked_template_form label');
             list.forEach(function (element: HTMLDivElement) {
-                let link = document.createElement(    'a');
+                let link = document.createElement('a');
                 let id = element.querySelector('input').value;
                 link.href = '/LayoutTemplate/view/id/' + id;
                 link.innerHTML = '#'+id+' &rarr;';
@@ -103,7 +124,7 @@ class VCEnhancementsApp {
         if (self.pageType == 'LayoutTemplate') {
             let list = document.querySelectorAll('form#linked_template_form label');
             list.forEach(function (element: HTMLDivElement) {
-                let link = document.createElement(    'a');
+                let link = document.createElement('a');
                 let id = element.querySelector('input').value;
                 link.href = '/LayoutBlockTemplate/view/id/' + id;
                 link.innerHTML = '#'+id+' &rarr;';
@@ -113,9 +134,145 @@ class VCEnhancementsApp {
                 element.appendChild(link);
             });
         }
-    }
+    };
 
-    private static ready (callback) {
+    private setupHistory = (): void => {
+        this.populateHistoryStore();
+
+        let form: HTMLElement = document.getElementById('content_wrap') .querySelector('form#edit_template_form');
+        this.buildHistoryDOM(form);
+    };
+
+    private populateHistoryStore = (): void => {
+        const config = localStorage.getItem('vce_historystore');
+        this.historyStore = config === null ? {} : JSON.parse(config);
+    };
+
+    private updateHistoryStore = (): void => {
+        localStorage.setItem('vce_historystore', JSON.stringify(this.historyStore));
+    };
+
+    private getCurrentHistory = (): Array<DataHistory> => {
+        const current = this.historyStore[this.pageType + '_' + this.pageId]
+        return typeof current === 'undefined' ? [] : current;
+    };
+
+    private setCurrentHistory = (newSet: Array<DataHistory>): void => {
+        this.historyStore[this.pageType + '_' + this.pageId] = newSet;
+    };
+
+    private buildHistoryDOM = (appendable: HTMLElement): HTMLDivElement => {
+        const self = this;
+
+        let dom = document.createElement('div');
+        dom.className = 'vce_history_container';
+        dom.innerHTML = `
+            <button class="btn vce_history_store_btn">Store current config</button>
+            <button class="btn vce_history_restore_btn">Restore previous config</button>
+        `;
+        appendable.append(dom);
+
+        (dom.querySelector('button.vce_history_store_btn') as HTMLButtonElement).onclick = function (event: PointerEvent) {
+            event.preventDefault();
+            self.historyStoreButtonClickEvent(self);
+        };
+
+        (dom.querySelector('button.vce_history_restore_btn') as HTMLButtonElement).onclick = function (event: PointerEvent) {
+            event.preventDefault();
+            self.historyRestoreButtonClickEvent(self);
+        }
+        return dom;
+    };
+
+    private historyStoreButtonClickEvent = (context: VCEnhancementsApp): void => {
+        let descriptor = prompt('Please enter a caption to describe the current configuration:');
+        let config : DataHistory = {
+            uuid: uuidv4(),
+            descriptor,
+            datetime: new Date().toString(),
+            formData: context.buildFormData(),
+        }
+        context.setCurrentHistory([...context.getCurrentHistory(), config]);
+        context.updateHistoryStore();
+    };
+
+    private historyRestoreButtonClickEvent = (context: VCEnhancementsApp): void => {
+        const self = this;
+
+        if (context.getCurrentHistory().length <= 0) {
+            alert('You have not stored any previous configurations for this block!');
+            return;
+        }
+
+        let old = document.querySelector('.vce_history_restore_container');
+        if (old !== null) {
+            old.remove();
+        }
+
+        let dom = document.createElement('div');
+        dom.className = 'vce_history_restore_container';
+        dom.innerHTML = `
+            <select id="vce_history_restore_select">
+                ${context.getCurrentHistory().map(item => `<option value="${item.uuid}">${item.descriptor === '' ? '' : item.descriptor + ' - '}${item.datetime}</option>`)}
+            </select>
+            <button class="btn" id="vce_history_restore_select">Restore</button>
+        `;
+
+        document.querySelector('.vce_history_container').append(dom);
+
+        (dom.querySelector('button#vce_history_restore_select') as HTMLButtonElement).onclick = function (event: PointerEvent) {
+            event.preventDefault();
+            self.historyRestoreSelectEvent(self);
+        }
+    };
+
+    private historyRestoreSelectEvent = (context: VCEnhancementsApp): void => {
+        if (document.querySelector('#vce_history_restore_select') === null) {
+            return;
+        }
+        if ((document.querySelector('#vce_history_restore_select') as HTMLSelectElement).value === '') {
+            return;
+        }
+        context.populateFormData(context.getDataHistoryByUuid((document.querySelector('#vce_history_restore_select') as HTMLSelectElement).value));
+    };
+
+    private buildFormData = (): Array<DataEntry> => {
+        const self = this;
+        // @ts-ignore
+        return [... document
+            .getElementById('content_wrap')
+            .querySelector('form#edit_template_form')
+            .querySelectorAll('*[name]')
+        ]
+            .map(function (element) {
+                return element.tagName === 'TEXTAREA' ? {
+                        'name': element.name,
+                        'value': self.editors[element.id].getValue()
+                    } : {
+                        'name': element.name,
+                        'value': element.value
+                    };
+            });
+    };
+
+    private getDataHistoryByUuid = (uuid: string): DataHistory => (this.getCurrentHistory() as Array<DataHistory>).filter(item => item.uuid === uuid)[0];
+
+    private populateFormData = (data: DataHistory): void => {
+        const self = this;
+
+        const form = document.querySelector('form#edit_template_form');
+        data.formData.forEach(function (item) {
+            if (form.querySelector('*[name="'+item.name+'"]').tagName === 'TEXTAREA') {
+                (form.querySelector('*[name="'+item.name+'"]') as HTMLTextAreaElement).innerHTML = item.value;
+                // @ts-ignore
+                console.log(self.editors[(form.querySelector('*[name="'+item.name+'"]') as HTMLTextAreaElement).id].setValue(item.value));
+            } else {
+                (form.querySelector('*[name="'+item.name+'"]') as HTMLInputElement|HTMLSelectElement).value = item.value;
+            }
+        });
+    };
+
+    private static ready = (callback): void => {
         // see if DOM is already available
         if (document.readyState === "complete" || document.readyState === "interactive") {
             // call on next available tick
@@ -123,7 +280,7 @@ class VCEnhancementsApp {
         } else {
             document.addEventListener("DOMContentLoaded", callback);
         }
-    }
+    };
 }
 
 let app = new VCEnhancementsApp();
