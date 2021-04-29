@@ -139,7 +139,7 @@ class VCEnhancementsApp {
     private setupHistory = (): void => {
         this.populateHistoryStore();
 
-        let form: HTMLElement = document.getElementById('content_wrap') .querySelector('form#edit_template_form');
+        let form: HTMLElement = document.getElementById('content_wrap').querySelector('form#edit_template_form');
         this.buildHistoryDOM(form);
     };
 
