@@ -77,7 +77,6 @@ class VCEnhancementsApp {
                 height: '350px',
                 lineNumbers: true,
                 mode: lang,
-
             };
             self.editors.push(CodeMirror.fromTextArea(
                 document.getElementById(id) as HTMLTextAreaElement,
