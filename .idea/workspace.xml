@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="76fcaf5c-20da-45c0-bbfa-049aaffea8a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619668619238</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update README.md">
+      <created>1619668989060</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619668989060</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,9 +163,9 @@
     <MESSAGE value="Attempt to fix monaco" />
     <MESSAGE value="Fresh attempt" />
     <MESSAGE value="Working implementation with CodeMirror" />
-    <MESSAGE value="Update README.md" />
     <MESSAGE value="Add additional styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add additional styling" />
+    <MESSAGE value="Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="305" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619666308658">
@@ -181,10 +188,10 @@
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
     <state width="1750" height="258" key="GridCell.Tab.0.right/0.25.1792.1058@0.25.1792.1058" timestamp="1619668638419" />
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619668620427">
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2" timestamp="1619668991166">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619668620427" />
+    <state x="496" y="291" key="Vcs.Push.Dialog.v2/0.25.1792.1058@0.25.1792.1058" timestamp="1619668991166" />
     <state x="661" y="292" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1618822889996">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
@@ -193,9 +200,9 @@
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
     <state x="597" y="309" width="597" height="490" key="find.popup/0.25.1792.1058@0.25.1792.1058" timestamp="1619665195503" />
-    <state x="561" y="260" width="670" height="676" key="search.everywhere.popup" timestamp="1619666319880">
+    <state x="561" y="260" width="670" height="676" key="search.everywhere.popup" timestamp="1619669119573">
       <screen x="0" y="25" width="1792" height="1058" />
     </state>
-    <state x="561" y="260" width="670" height="676" key="search.everywhere.popup/0.25.1792.1058@0.25.1792.1058" timestamp="1619666319880" />
+    <state x="561" y="260" width="670" height="676" key="search.everywhere.popup/0.25.1792.1058@0.25.1792.1058" timestamp="1619669119573" />
   </component>
 </project>

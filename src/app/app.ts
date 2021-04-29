@@ -19,7 +19,7 @@ interface CodeMirrorLanguageMode {
 }
 
 class VCEnhancementsApp {
-    private editors: Array<String> = [];
+    private editors: Array<CodeMirror.EditorFromTextArea> = [];
 
     private paths = [
         { test: /^.*\.venditan\.com\/LayoutBlockInstance.*$/, type: 'LayoutBlockInstance' },
@@ -79,10 +79,10 @@ class VCEnhancementsApp {
                 mode: lang,
 
             };
-            let editor = CodeMirror.fromTextArea(
+            self.editors.push(CodeMirror.fromTextArea(
                 document.getElementById(id) as HTMLTextAreaElement,
                 editorConfig
-            );
+            ));
         });
     }
 
