@@ -53,6 +53,7 @@ class VCEnhancementsApp {
             self.setupEditors();
             self.setupJumpLinks();
             self.setupHistory();
+            self.setupDialogHandleAutoInput();
         });
     }
 
@@ -72,18 +73,18 @@ class VCEnhancementsApp {
     private setupEditors = (): void => {
         const self = this;
 
-        let editors: NodeListOf<HTMLTextAreaElement>;
+        let editorLocator: HTMLCollectionOf<Element>|NodeListOf<HTMLTextAreaElement>|Element;
         if (self.pageType == 'LayoutBlockInstance' || self.pageType == 'LayoutTemplate' ||  self.pageType == 'LayoutBlockTemplate') {
-            editors = document.getElementById('content_wrap')
-                .getElementsByClassName('span8')[0]
-                .querySelectorAll('textarea.code_textarea');
+            editorLocator = document.getElementById('content_wrap').getElementsByClassName('span8');
+            if (editorLocator.length <= 0) { return; }
+            editorLocator = editorLocator[0].querySelectorAll('textarea.code_textarea');
         } else if (self.pageType == 'CMSContentTemplate') {
-            editors = document.getElementById('content_wrap')
-                .querySelector('form#edit_template_form')
-                .querySelectorAll('textarea.code_textarea');
+            editorLocator = document.getElementById('content_wrap').querySelector('form#edit_template_form');
+            if (editorLocator === null) { return; }
+            editorLocator = editorLocator.querySelectorAll('textarea.code_textarea');
         }
 
-        editors.forEach(function(element: HTMLTextAreaElement) {
+        (editorLocator as NodeListOf<HTMLTextAreaElement>).forEach(function(element: HTMLTextAreaElement) {
             const id = uuidv4();
             element.id = id;
 
@@ -131,6 +132,7 @@ class VCEnhancementsApp {
         this.populateHistoryStore();
 
         let form: HTMLElement = document.getElementById('content_wrap').querySelector('form#edit_template_form');
+        if (form === null) { return; }
         this.buildHistoryDOM(form);
     };
 
@@ -272,6 +274,44 @@ class VCEnhancementsApp {
             }
         });
     };
+
+    private setupDialogHandleAutoInput (): void|boolean {
+        const self = this;
+        document.addEventListener( 'keyup', function ( event: KeyboardEvent ) {
+            const emitter: EventTarget = event.target;
+            const parent: HTMLElement = (emitter as HTMLElement).parentElement;
+
+            // Isn't a quick add content dialog with name and handle inputs
+            if (
+                (emitter as HTMLElement).getAttribute('name') !== 'name' ||
+                // @ts-ignore
+                [...parent.classList].indexOf('quick_create_form') < 0 ||
+                parent.parentElement.className !== 'dialog_content' ||
+                parent.querySelector('input[name="name"]') === null ||
+                parent.querySelector('input[name="handle"]') === null
+            ) {
+                return false;
+            }
+
+            let nameInput = emitter as HTMLInputElement;
+            let handleInput = parent.querySelector('input[name="handle"]') as HTMLInputElement;
+
+            nameInput.autocomplete = 'off';
+            handleInput.autocomplete = 'off';
+            handleInput.value = self.handleSlugify(nameInput.value);
+        });
+    }
+
+    private handleSlugify (input: string) : string {
+        return input.toString().toLowerCase()
+            .replace(/\s+/g, '_')           // Replace spaces with _
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '_')         // Replace multiple - with single -
+            .replace(/\_\_+/g, '_')         // Replace multiple _ with single _
+            .replace(/\_\-\_+/g, '_')       // Replace spaces separated by - with single _
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+    }
 
     private static ready = (callback): void => {
         // see if DOM is already available
