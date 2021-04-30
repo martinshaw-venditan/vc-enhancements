@@ -6,7 +6,7 @@ import 'codemirror/theme/idea.css';
 import 'codemirror/mode/php/php.js';
 import 'codemirror/mode/javascript/javascript.js';
 
-interface EditorAddon extends CodeMirror.EditorConfiguration {
+interface EditorConfiguration extends CodeMirror.EditorConfiguration {
     height?: string;
     lineNumbers?: boolean;
     autoRefresh?: boolean;
@@ -94,7 +94,7 @@ class VCEnhancementsApp {
                 // ...
             }
 
-            const editorConfig: CodeMirror.EditorConfiguration & EditorAddon = {
+            const editorConfig: EditorConfiguration = {
                 height: '350px',
                 lineNumbers: true,
                 mode: lang,
@@ -108,32 +108,23 @@ class VCEnhancementsApp {
 
     private setupJumpLinks = (): void => {
         const self = this;
-        if (self.pageType == 'LayoutBlockTemplate') {
-            let list = document.querySelectorAll('form#linked_template_form label');
-            list.forEach(function (element: HTMLDivElement) {
-                let link = document.createElement('a');
-                let id = element.querySelector('input').value;
-                link.href = '/LayoutTemplate/view/id/' + id;
-                link.innerHTML = '#'+id+' &rarr;';
-                link.target = "_blank";
-                link.className = 'jumplink';
-                link.title = "Open \""+element.innerText.slice(1,40)+"\" in a new tab...";
-                element.appendChild(link);
-            });
-        }
-        if (self.pageType == 'LayoutTemplate') {
-            let list = document.querySelectorAll('form#linked_template_form label');
-            list.forEach(function (element: HTMLDivElement) {
-                let link = document.createElement('a');
-                let id = element.querySelector('input').value;
-                link.href = '/LayoutBlockTemplate/view/id/' + id;
-                link.innerHTML = '#'+id+' &rarr;';
-                link.target = "_blank";
-                link.className = 'jumplink';
-                link.title = "Open \""+element.innerText.slice(1,40)+"\" in a new tab...";
-                element.appendChild(link);
-            });
-        }
+
+        let linkTo: boolean|string = false;
+        if (self.pageType == 'LayoutBlockTemplate') { linkTo = '/LayoutTemplate/view/id/'; }
+        if (self.pageType == 'LayoutTemplate') { linkTo = '/LayoutBlockTemplate/view/id/'; }
+        if (linkTo === false) { return; }
+
+        let list = document.querySelectorAll('form#linked_template_form label');
+        list.forEach(function (element: HTMLDivElement) {
+            let link = document.createElement('a');
+            let id = element.querySelector('input').value;
+            link.href = linkTo + id;
+            link.innerHTML = '#'+id+' &rarr;';
+            link.target = "_blank";
+            link.className = 'jumplink';
+            link.title = "Open \""+element.innerText.slice(1,40)+"\" in a new tab...";
+            element.appendChild(link);
+        });
     };
 
     private setupHistory = (): void => {
