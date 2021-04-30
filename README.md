@@ -17,6 +17,9 @@ Adds links to switch between layouts and blocks in new tabs.
 
 If you are about to make a serious change to a block's content, you can store the configuration data with an explanative caption and restore the configuration at a later date.
 
+#### Handle Generated From Name Input Automatically
+When creating CMS content using the dialog, the formatted handle slug is generated automatically on keyup when inputting the name.
+
 ### How to install.
 
 1. Run 'yarn build'.
